@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign In</title>
+    <style>
+        :root{
+            --bg:#f4f7fb;
+            --card:#ffffff;
+            --accent:#2563eb;
+            --muted:#6b7280;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            margin:0;
+            font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+            background:linear-gradient(180deg,var(--bg),#eef2ff 70%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:32px;
+            color:#111827;
+        }
+        .card{
+            width:100%;
+            max-width:420px;
+            background:var(--card);
+            border-radius:12px;
+            box-shadow:0 6px 24px rgba(16,24,40,0.08);
+            padding:28px;
+        }
+        h1{margin:0 0 8px;font-size:20px}
+        p.lead{margin:0 0 20px;color:var(--muted);font-size:14px}
+        form{display:grid;gap:12px}
+        label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+        input[type="email"],
+        input[type="password"]{
+            width:100%;
+            padding:10px 12px;
+            border:1px solid #e6e9ef;
+            border-radius:8px;
+            font-size:14px;
+            background:#fff;
+        }
+        .row{display:flex;align-items:center;justify-content:space-between}
+        .checkbox{display:flex;gap:8px;align-items:center}
+        .btn{
+            display:inline-block;
+            background:var(--accent);
+            color:#fff;
+            border:none;
+            padding:10px 14px;
+            border-radius:8px;
+            font-size:15px;
+            cursor:pointer;
+        }
+        .link{font-size:13px;color:var(--accent);text-decoration:none}
+        .small{font-size:12px;color:var(--muted)}
+        .show-pass{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:13px}
+        .footer{margin-top:16px;text-align:center;font-size:13px;color:var(--muted)}
+    </style>
+</head>
+<body>
+    <main class="card" role="main">
+        <h1>Sign in to your account</h1>
+        <p class="lead">Enter your email and password to continue.</p>
+
+        <form id="signin" action="#" method="post" novalidate>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+            </div>
+
+            <div>
+                <label for="password">Password</label>
+                <div style="display:flex;gap:8px">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••" />
+                    <button type="button" class="show-pass" id="togglePass" aria-pressed="false" title="Show password">Show</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="checkbox">
+                    <input type="checkbox" name="remember" /> <span class="small">Remember me</span>
+                </label>
+                <a href="#" class="link">Forgot password?</a>
+            </div>
+
+            <div>
+                <button class="btn" type="submit">Sign in</button>
+            </div>
+        </form>
+
+        <div class="footer">New here? <a href="#" class="link">Create an account</a></div>
+    </main>
+
+    <script>
+        // toggle show/hide password
+        const pass = document.getElementById('password');
+        const toggle = document.getElementById('togglePass');
+        toggle.addEventListener('click', () => {
+            const isHidden = pass.type === 'password';
+            pass.type = isHidden ? 'text' : 'password';
+            toggle.textContent = isHidden ? 'Hide' : 'Show';
+            toggle.setAttribute('aria-pressed', String(!isHidden));
+        });
+
+        // simple client-side submit handling (replace with real auth)
+        document.getElementById('signin').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = {
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value
+            };
+            if (!data.email || !data.password) {
+                alert('Please fill in both fields.');
+                return;
+            }
+            // Replace with real submission logic
+            console.log('Sign-in attempt', data);
+            alert('Signed in (demo).');
+        });
+    </script>
+</body>
+</html>
